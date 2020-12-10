@@ -178,7 +178,7 @@ wget https://github.com/MiniZinc/MiniZincIDE/releases/download/${minizinc_versio
 	mkdir -p /opt/app && \
 	mv MiniZincIDE-${minizinc_version}-bundle-linux-x86_64 /opt/app/MiniZincIDE && \
 	rm -rf MiniZincIDE-${minizinc_version}-bundle-linux-x86_64.tgz && \
-	chown circleci /opt/app/MiniZincIDE
+	chown -R circleci /opt/app/MiniZincIDE
 
 ###
 # END IMAGE CUSTOMIZATIONS
