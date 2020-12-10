@@ -4,7 +4,7 @@
 ### for a complete list of Dockerfiles for each tag/variant of this image
 ###
 
-FROM elixir:1.10.4
+FROM elixir:1.10.4-node
 
 # make Apt non-interactive
 RUN echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/90circleci \
@@ -88,12 +88,13 @@ RUN groupadd --gid 3434 circleci \
   && echo 'Defaults    env_keep += "DEBIAN_FRONTEND"' >> /etc/sudoers.d/env_keep
 
 # BEGIN IMAGE CUSTOMIZATIONS
-RUN apt-get -y update && apt-get -y install wget
+
+### MiniZinc
+RUN apt-get update && apt-get install wget
 ENV PATH "$PATH:/opt/app/MiniZincIDE/bin"
 ENV LD_LIBRARY_PATH "$LD_LIBRARY_PATH:/opt/app/MiniZincIDE/lib"
 ENV SHELL /bin/sh
 
-### MiniZinc
 ARG minizinc_version=2.5.2
 
 RUN \
